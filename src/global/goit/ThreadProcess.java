@@ -4,11 +4,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ThreadProcess extends Thread {
     private final NumProcessor numProcessor;
-    private int number;
     private final AtomicBoolean isProcessDone = new AtomicBoolean(true);
+    private int number;
+    private String result = "";
 
     public ThreadProcess(NumProcessor numProcessor) {
-             this.numProcessor = numProcessor;
+        this.numProcessor = numProcessor;
+    }
+
+    public String getResult() {
+        return result;
     }
 
     public boolean getIsProcessDone() {
@@ -18,26 +23,23 @@ public class ThreadProcess extends Thread {
     public void process(int i) {
         this.number = i;
         isProcessDone.set(false);
-
     }
 
     @Override
     public void run() {
         while (true) {
             try {
-                Thread.sleep(10);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-//            System.out.println(number+",sdhg,jhs"+isProcessDone.get());
+
             if (isProcessDone.get()) {
                 continue;
             }
 
-            numProcessor.check(number);
+            result = numProcessor.check(number);
             isProcessDone.set(true);
         }
     }
-
-
 }

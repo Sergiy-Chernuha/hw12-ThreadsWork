@@ -6,13 +6,15 @@ public class Chronometer {
     public static void startChronometer(int maxValue) {
 
         Thread firstThread = new Thread(() -> {
-            try {
-                for (i = 1; i <= maxValue; i++) {
+            for (i = 1; i <= maxValue; i++) {
+
+                try {
                     Thread.sleep(1000);
-                    System.out.println( i + " seconds have passed");
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+
+                System.out.println(i + " seconds have passed");
             }
         });
 
