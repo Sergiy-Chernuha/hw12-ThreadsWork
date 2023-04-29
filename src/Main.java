@@ -6,12 +6,13 @@ public class Main {
 ////_____________first exercise___________
 //        Chronometer.startChronometer(50);
 
-//        _______________
+//        ________second exercise_______
 
-        NumberArrayModifier numberModifier= new NumberArrayModifier(15);
-Thread.sleep(500);
+        NumberArrayModifier numberModifier= new NumberArrayModifier(150);
+
         System.out.println(numberModifier.buildModifiedString());
         System.out.println("end ");
-
+        System.out.println(Thread.activeCount());
+        System.exit(0);
     }
 }
